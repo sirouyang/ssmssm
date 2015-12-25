@@ -74,6 +74,8 @@
 <!-- AdminLTE for demo purposes -->
 <script src="${ctx}/res/AdminLTE/dist/js/demo.js"></script>
 
+<%-- 打开弹出窗口的工具类 --%>
+<script src="${ctx}/res/js/common/OpenWinUtil.js"></script>
 <%-- jqGrid-4.6.0 核心 JavaScript 文件 --%>
 <!-- <script src="${ctx}/res/js/jqGrid-4.6.0/jquery.jqGrid.min.js"></script>
 <script src="${ctx}/res/js/common/jqGridInit.js"></script>

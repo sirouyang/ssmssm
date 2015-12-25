@@ -66,7 +66,54 @@
     </section>
     <!-- /.content -->
     
-    <script src="${ctx}/res/js/system/user_index.js"></script>
+    <!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">新增</h4>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<input type="text" class="form-control" id="name" placeholder="姓名">
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" id="position"
+							placeholder="位置">
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" id="salary"
+							placeholder="薪资">
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" id="start_date"
+							placeholder="时间" data-date-format="yyyy/mm/dd">
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" id="office"
+							placeholder="工作地点">
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" id="extn" placeholder="编号">
+					</div>
+				</div>
+				<div class="modal-footer">
+					<input type="hidden" id="userId" />
+					<input type="hidden" id="mode" value="I" />
+					<button type="button" class="btn btn-info" id="initData">添加模拟数据</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary" id="save">保存</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="${ctx}/res/js/system/user_index.js"></script>
     <script>
     	var commonCodeList = ${commonCodeList};
     </script>

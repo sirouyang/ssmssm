@@ -5,6 +5,7 @@ var paramColumns = new Array();
 var paramColumnDefs = new Array();
 var tableId = "mytable";
 var lock = false;
+var btnAdd = true;
 function datatablesInit() {
 	// 防止多次提交
 	if (lock) {
@@ -46,8 +47,10 @@ function datatablesInit() {
 		},
         "dom": "<'row'<'col-xs-2'l><'#mytool.col-xs-4'><'col-xs-6'f>r>" + "t" + "<'row'<'col-xs-6'i><'col-xs-6'p>>",
 		initComplete: function () {
-            $("#mytool").append('<button type="button" class="btn btn-default btn-sm" id="btnAdd">添加</button>');
-            $("#btnAdd").on("click", funAdd);
+			if (btnAdd) {
+	            $("#mytool").append('<button type="button" class="btn btn-default btn-sm" id="btnAdd">添加</button>');
+	            $("#btnAdd").on("click", funAdd);
+			}
             lock = false;
         }
 	});

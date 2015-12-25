@@ -52,20 +52,24 @@ $(function() {
 /**
  *添加按钮
  **/
-function funAdd(id) {
-	alert('funAdd');
+function funAdd() {
+	$("#myModal").modal("show");
 }
 
 /**
  *编辑按钮
  **/
 function funUpd(id) {
-	alert('funUpd');
+	$("#userId").val(id);
+	$("#mode").val("U");
+	$("#myModal").modal("show");
 }
 /**
  *删除按钮
  **/
 function funDel(id) {
-	alert('funDel');
+	$("#userId").val(id);
+	$("#mode").val("D");
+	$("#myModal").modal("show");
 }
 
