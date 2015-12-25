@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssmssm.daoEx.system.UserRoleResExMapper">
+  <resultMap id="selectRoleResResultMap" type="com.ssmssm.entityEx.system.RoleResResultEntity">
+    <result column="role_id" jdbcType="VARCHAR" property="roleId" />
+    <result column="resource_id" jdbcType="VARCHAR" property="resourceId" />
+    <result column="resource_url" jdbcType="VARCHAR" property="resourceUrl" />
+    <result column="resource_type" jdbcType="VARCHAR" property="resourceType" />
+  </resultMap>
+  <select id="selectRoleRes" parameterType="com.ssmssm.entityEx.system.RoleResConditionEntity" resultMap="selectRoleResResultMap">
+    SELECT t1.id AS role_id, 
+	       t3.id AS resource_id, 
+	       t3.resource_url, 
+	       t3.resource_type 
+	  FROM t_auth_role t1 
+	 INNER JOIN t_auth_role_resource t2 
+	    ON t1.id = t2.role_id 
+	   AND t1.del_flg = t2.del_flg 
+	 INNER JOIN t_auth_resource T3 
+	    ON t2.resource_id = t3.id 
+	   AND t2.del_flg = t3.del_flg 
+	 WHERE t1.role_enabled =#{roleEnabled}
+	   AND t1.del_flg =#{delFlg0}
+	UNION 
+	SELECT t1.id as role_id, 
+	       t3.id as resource_id, 
+	       t3.resource_url, 
+	       t3.resource_type 
+	  FROM t_auth_role t1 
+	 CROSS JOIN t_auth_resource t3 
+	 WHERE t3.del_flg =#{delFlgR}
+  </select>
+  
+  <select id="selectUserRole" parameterType="com.ssmssm.entityEx.system.RoleResConditionEntity" resultType="String">
+    SELECT t1.id
+	  FROM t_auth_role t1
+	 INNER JOIN t_auth_user_role t2
+	    ON t1.id = t2.role_id
+	   AND t1.del_flg = t2.del_flg
+	 WHERE t1.role_enabled = #{roleEnabled}
+	   AND t1.del_flg = #{delFlg0}
+  </select>
+</mapper>

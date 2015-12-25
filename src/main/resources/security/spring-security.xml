@@ -1,0 +1,78 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/security
+	http://www.springframework.org/schema/security/spring-security.xsd">
+	<!-- 登录界面不使用权限过滤 -->
+	<http security="none" pattern="/login*"></http>
+	<http security="none" pattern="/res/**"></http>
+	
+	<beans:bean id="XarchWebInvocationPrivilegeEvaluator" class="org.springframework.security.web.access.DefaultWebInvocationPrivilegeEvaluator">
+		<beans:constructor-arg name="securityInterceptor" ref="xarchSecurityFilter" />
+	</beans:bean>
+    
+    
+	<http use-expressions="true" auto-config="true">
+		<anonymous enabled="false"/>
+		<form-login password-parameter="password" username-parameter="username" login-page="/login" authentication-success-handler-ref="authenticationSuccessHandler" authentication-failure-handler-ref="authenticationFailureHandler" />
+		<logout success-handler-ref="logoutSuccessHandler" logout-url="/logout" delete-cookies="JSESSIONID"/>
+		<remember-me key="ssoKey" user-service-ref="XarchUserService"/>
+		<session-management session-fixation-protection="migrateSession"  invalid-session-url="/login?login_error=2">
+			<concurrency-control expired-url="/login?login_error=3" error-if-maximum-exceeded="false" />
+		</session-management>
+		<custom-filter ref="xarchSecurityFilter" after="FILTER_SECURITY_INTERCEPTOR" />
+        
+	</http>
+	
+	<!-- 登录成功处理器 -->
+	<beans:bean id="authenticationSuccessHandler" class="com.ssmssm.core.security.handler.AuthenticationSuccessHandler">
+		<beans:property name="targetUrlParameter" value="/targetUrl" />
+		<beans:property name="defaultTargetUrl" value="/index" />
+	</beans:bean>
+	
+	<!-- 登录失败处理器 -->
+	<beans:bean id="authenticationFailureHandler" class="com.ssmssm.core.security.handler.AuthenticationFailureHandler">
+		<beans:property name="defaultFailureUrl" value="/login?login_error=1" />
+	</beans:bean>
+	
+	<!-- 登出成功处理器 -->
+	<beans:bean id="logoutSuccessHandler" class="com.ssmssm.core.security.handler.LogoutSuccessHandler">
+		<beans:property name="defaultTargetUrl" value="/login?login_error=0" />
+	</beans:bean>
+	
+	<!-- 自定义的filter -->
+	<beans:bean id="xarchSecurityFilter" class="org.springframework.security.web.access.intercept.FilterSecurityInterceptor">
+		<!-- 用户拥有的权限 -->
+		<beans:property name="authenticationManager" ref="authenticationManager" />
+		<!-- 用户是否拥有所请求资源的权限-->
+		<beans:property name="accessDecisionManager" ref="XarchAccessDecisionManager" />
+		<!-- 资源与权限对应关系 -->
+		<beans:property name="securityMetadataSource" ref="XarchInvocationSecurityMetadataSource" />
+		<beans:property name="observeOncePerRequest" value="false" />
+	</beans:bean>
+	
+	<!-- 认证管理器 -->
+	<authentication-manager alias="authenticationManager" erase-credentials="false">
+		<authentication-provider user-service-ref="XarchUserService">
+			<!-- 密码加密方式采用MD5，同时使用username（登录名）作为盐 -->
+			<password-encoder hash="md5">  
+				<salt-source user-property="username"/>
+			</password-encoder>
+		</authentication-provider>
+	</authentication-manager>
+
+	<!-- CSRF protection. Here we only include the CsrfFilter instead of all 
+		of Spring Security. See http://docs.spring.io/spring-security/site/docs/3.2.x/reference/htmlsingle/#csrf 
+		for more information on Spring Security's CSRF protection -->
+	<beans:bean id="csrfFilter" class="org.springframework.security.web.csrf.CsrfFilter">
+		<beans:constructor-arg>
+			<beans:bean
+				class="org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository" />
+		</beans:constructor-arg>
+	</beans:bean>
+	<!-- Provides automatic CSRF token inclusion when using Spring MVC Form 
+		tags or Thymeleaf. -->
+	<beans:bean id="requestDataValueProcessor"
+		class="org.springframework.security.web.servlet.support.csrf.CsrfRequestDataValueProcessor" />
+</beans:beans> 
