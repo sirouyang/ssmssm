@@ -13,6 +13,7 @@ import java.io.OutputStream;
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
+import javax.servlet.ServletContext;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.logging.Log;
@@ -21,8 +22,8 @@ import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.io.SAXReader;
 import org.postgresql.util.Base64;
-
-import com.ssmssm.core.view.listener.XarchListener;
+import org.springframework.web.context.ContextLoader;
+import org.springframework.web.context.WebApplicationContext;
 
 
 /**
@@ -53,7 +54,9 @@ public class FileUtilEx {
 	}
 	
 	public static InputStream getInputStreamByRelativePath(String relativePath){
-		String filePath = XarchListener.appAbsolutepath + relativePath;
+	    WebApplicationContext webApplicationContext = ContextLoader.getCurrentWebApplicationContext();  
+        ServletContext servletContext = webApplicationContext.getServletContext(); 
+		String filePath = servletContext.getRealPath("/") + relativePath;
 		File file = new File(filePath);
 		FileInputStream fis = null;
 		try {

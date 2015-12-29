@@ -20,8 +20,8 @@ import com.ssmssm.daoEx.system.UserRoleResExMapper;
 import com.ssmssm.entityEx.system.RoleResConditionEntity;
 import com.ssmssm.entityEx.system.RoleResResultEntity;
 
-@Service("XarchInvocationSecurityMetadataSource")
-public class XarchInvocationSecurityMetadataSource implements
+@Service("InvocationSecurityMetadataSourceEx")
+public class InvocationSecurityMetadataSourceEx implements
 		FilterInvocationSecurityMetadataSource {
 	/** SAME_LEVEL_TYPE(String): 忽略参数. */
 	private static final String SAME_LEVEL_TYPE = "02";
@@ -227,9 +227,9 @@ public class XarchInvocationSecurityMetadataSource implements
 				atts.add(new SecurityConfig(role));
 
 				if (USER_TYPE.equals(resType)
-						&& !XarchUserDetailService.USER_ROLE.equals(role)) {
+						&& !UserDetailServiceEx.USER_ROLE.equals(role)) {
 					atts.add(new SecurityConfig(
-							XarchUserDetailService.USER_ROLE));
+							UserDetailServiceEx.USER_ROLE));
 				}
 			}
 

@@ -25,8 +25,8 @@ import com.ssmssm.entity.system.User;
 import com.ssmssm.entity.system.UserCriteria;
 import com.ssmssm.entityEx.system.RoleResConditionEntity;
 
-@Service("XarchUserService")
-public class XarchUserDetailService implements UserDetailsService {
+@Service("UserDetailServiceEx")
+public class UserDetailServiceEx implements UserDetailsService {
 	/** USER_ROLE(String):登录后用户具有的默认权限. */
 	public static final String USER_ROLE = "USER_ROLE";
 
@@ -34,7 +34,7 @@ public class XarchUserDetailService implements UserDetailsService {
 	private boolean useValidateCode = false;
 
 	/** Session中保存验证码的主键名称. */
-	public static String sessionvalidateCodeKey = "_Xarch_validate_code_";
+	public static String sessionvalidateCodeKey = "_ssm_validate_code_";
 
 	/** 表单中存放用户输入验证码的参数名称. */
 	private String validateCodeParameter = "validateCode";
@@ -184,7 +184,7 @@ public class XarchUserDetailService implements UserDetailsService {
 	@Autowired(required = false)
 	@Qualifier("sessionvalidateCodeKey")
 	public void setSessionvalidateCodeKey(String sessionvalidateCodeKey) {
-		XarchUserDetailService.sessionvalidateCodeKey = sessionvalidateCodeKey;
+		UserDetailServiceEx.sessionvalidateCodeKey = sessionvalidateCodeKey;
 	}
 
 	/**

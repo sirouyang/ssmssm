@@ -73,6 +73,10 @@
 <!-- <script src="${ctx}/res/AdminLTE/dist/js/pages/dashboard.js"></script> -->
 <!-- AdminLTE for demo purposes -->
 <script src="${ctx}/res/AdminLTE/dist/js/demo.js"></script>
+<!-- InputMask -->
+<script src="${ctx}/res/AdminLTE/plugins/input-mask/jquery.inputmask.js"></script>
+<script src="${ctx}/res/AdminLTE/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+<script src="${ctx}/res/AdminLTE/plugins/input-mask/jquery.inputmask.extensions.js"></script>
 
 <%-- 打开弹出窗口的工具类 --%>
 <script src="${ctx}/res/js/common/OpenWinUtil.js"></script>

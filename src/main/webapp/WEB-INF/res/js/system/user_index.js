@@ -47,6 +47,10 @@ $(function() {
 //			cell.innerHTML = i + 1;
 //		});
 //	}).draw();
+	
+	$("[data-mask]").inputmask();
+	$("#txtUserPsw").strength({language: 'zh-CN'});
+	$("#txtUserPswConfirm").strength({language: 'zh-CN'});
 });
 
 /**

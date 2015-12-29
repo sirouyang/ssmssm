@@ -11,8 +11,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 
-@Service("XarchAccessDecisionManager")
-public class XarchAccessDecisionManager implements AccessDecisionManager {
+@Service("AccessDecisionManagerEx")
+public class AccessDecisionManagerEx implements AccessDecisionManager {
 	/*
 	 * (non-Javadoc)
 	 * 

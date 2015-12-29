@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" import="com.ssmssm.core.utils.*"%>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 
 <!DOCTYPE html>
@@ -9,6 +10,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
 <title>Insert title here</title>
+<link href="${ctx}/res/strength-meter/css/strength-meter.css" media="all" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 	<!-- Content Header (Page header) -->
@@ -78,42 +80,87 @@
 					</button>
 					<h4 class="modal-title" id="myModalLabel">新增</h4>
 				</div>
-				<div class="modal-body">
-					<div class="form-group">
-						<input type="text" class="form-control" id="name" placeholder="姓名">
+				<!-- form start -->
+				<form class="form-horizontal">
+					<div class="box-body">
+						<div class="form-group">
+							<label for="lblUserName" class="col-sm-2 control-label">用户名</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="txtUserName"
+									placeholder="用户名" maxlength="10" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="lblUserPsw" class="col-sm-2 control-label">密码</label>
+							<div class="col-sm-10">
+								<input type="password" class="form-control strength" id="txtUserPsw"
+									placeholder="密码" maxlength="20" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="lblUserPswConfirm" class="col-sm-2 control-label">确认密码</label>
+							<div class="col-sm-10">
+								<input type="password" class="form-control strength"
+									id="txtUserPswConfirm" placeholder="确认密码" maxlength="20" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="lblFullName" class="col-sm-2 control-label">姓名</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="txtFullName"
+									placeholder="姓名" maxlength="20" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="lblSex" class="col-sm-2 control-label">性别</label>
+							<div class="col-sm-5 radio">
+								<label> <input type="radio" name="radSex"
+									id="radSex1" value="<%=ComConst.SEX_1001%>" checked />男
+								</label>
+							</div>
+							<div class="col-sm-5 radio">
+								<label> <input type="radio" name="radSex"
+									id="radSex2" value="<%=ComConst.SEX_1002%>" />女
+								</label>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="lblEmail" class="col-sm-2 control-label">邮箱</label>
+							<div class="col-sm-10">
+								<input type="email" class="form-control" id="txtEmail"
+									placeholder="邮箱" maxlength="50" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="lblMobilePhone" class="col-sm-2 control-label">手机</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="txtMobilePhone"
+									placeholder="手机" data-inputmask='"mask": "999 9999 9999"' data-mask />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="lblComments" class="col-sm-2 control-label">备注</label>
+							<div class="col-sm-10">
+								<textarea class="form-control" rows="3" placeholder="备注"
+									id="txtComments" maxlength="100" ></textarea>
+							</div>
+						</div>
 					</div>
-					<div class="form-group">
-						<input type="text" class="form-control" id="position"
-							placeholder="位置">
+					<!-- /.box-body -->
+					<div class="box-footer">
+						<input type="hidden" id="userId" /> <input type="hidden"
+							id="mode" value="I" />
+						<button type="submit" class="btn btn-info pull-right" id="save">保存</button>
 					</div>
-					<div class="form-group">
-						<input type="text" class="form-control" id="salary"
-							placeholder="薪资">
-					</div>
-					<div class="form-group">
-						<input type="text" class="form-control" id="start_date"
-							placeholder="时间" data-date-format="yyyy/mm/dd">
-					</div>
-					<div class="form-group">
-						<input type="text" class="form-control" id="office"
-							placeholder="工作地点">
-					</div>
-					<div class="form-group">
-						<input type="text" class="form-control" id="extn" placeholder="编号">
-					</div>
-				</div>
-				<div class="modal-footer">
-					<input type="hidden" id="userId" />
-					<input type="hidden" id="mode" value="I" />
-					<button type="button" class="btn btn-info" id="initData">添加模拟数据</button>
-					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-					<button type="button" class="btn btn-primary" id="save">保存</button>
-				</div>
+					<!-- /.box-footer -->
+				</form>
 			</div>
 		</div>
 	</div>
 
 	<script src="${ctx}/res/js/system/user_index.js"></script>
+	<script src="${ctx}/res/strength-meter/js/strength-meter.js" type="text/javascript"></script>
+    <script src="${ctx}/res/strength-meter/js/locales/strength-meter-zh-CN.js" type="text/javascript"></script>
     <script>
     	var commonCodeList = ${commonCodeList};
     </script>

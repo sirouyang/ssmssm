@@ -21,7 +21,7 @@ import com.ssmssm.entity.system.User;
 public class SsoController {
     
     @Autowired
-    @Qualifier("XarchUserService")
+    @Qualifier("UserDetailServiceEx")
     private UserDetailsService userDetailsService;
     
     private HttpServletRequest request;
@@ -184,7 +184,7 @@ public class SsoController {
     
     public static final String SPRING_SECURITY_REMEMBER_ME_COOKIE_KEY = "SPRING_SECURITY_REMEMBER_ME_COOKIE";
     
-    private static final String LOGINUSERNAME_COOKIEKEY = "_xarch_loginuser_name_";
+    private static final String LOGINUSERNAME_COOKIEKEY = "_ssm_loginuser_name_";
     
     private static final int tokenLifetime = 30 * 60;
     

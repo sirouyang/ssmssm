@@ -14,7 +14,7 @@ import org.apache.commons.lang3.Validate;
  */
 public class ServletUtilsEx {
 	/** Session中IP地址对应的键值. */
-	public static final String IP_KEY = "_XARCH_CACHE_IP_KEY_";
+	public static final String IP_KEY = "_SSM_CACHE_IP_KEY_";
 	
 	/**
 	 * 构造函数.

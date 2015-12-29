@@ -27,7 +27,7 @@ public class HomeController extends BaseController
 //        }
 //        User user = userService.findById("1");
 //        System.err.println(user.getId());
-        return "/index";
+        return "index";
     }
     
 }

@@ -8,8 +8,8 @@
 	<http security="none" pattern="/login*"></http>
 	<http security="none" pattern="/res/**"></http>
 	
-	<beans:bean id="XarchWebInvocationPrivilegeEvaluator" class="org.springframework.security.web.access.DefaultWebInvocationPrivilegeEvaluator">
-		<beans:constructor-arg name="securityInterceptor" ref="xarchSecurityFilter" />
+	<beans:bean id="WebInvocationPrivilegeEvaluatorEx" class="org.springframework.security.web.access.DefaultWebInvocationPrivilegeEvaluator">
+		<beans:constructor-arg name="securityInterceptor" ref="securityFilterEx" />
 	</beans:bean>
     
     
@@ -17,17 +17,17 @@
 		<anonymous enabled="false"/>
 		<form-login password-parameter="password" username-parameter="username" login-page="/login" authentication-success-handler-ref="authenticationSuccessHandler" authentication-failure-handler-ref="authenticationFailureHandler" />
 		<logout success-handler-ref="logoutSuccessHandler" logout-url="/logout" delete-cookies="JSESSIONID"/>
-		<remember-me key="ssoKey" user-service-ref="XarchUserService"/>
+		<remember-me key="ssoKey" user-service-ref="UserDetailServiceEx"/>
 		<session-management session-fixation-protection="migrateSession"  invalid-session-url="/login?login_error=2">
 			<concurrency-control expired-url="/login?login_error=3" error-if-maximum-exceeded="false" />
 		</session-management>
-		<custom-filter ref="xarchSecurityFilter" after="FILTER_SECURITY_INTERCEPTOR" />
+		<custom-filter ref="securityFilterEx" after="FILTER_SECURITY_INTERCEPTOR" />
         
 	</http>
 	
 	<!-- 登录成功处理器 -->
 	<beans:bean id="authenticationSuccessHandler" class="com.ssmssm.core.security.handler.AuthenticationSuccessHandler">
-		<beans:property name="targetUrlParameter" value="/targetUrl" />
+		<beans:property name="targetUrlParameter" value="targetUrl" />
 		<beans:property name="defaultTargetUrl" value="/index" />
 	</beans:bean>
 	
@@ -42,19 +42,19 @@
 	</beans:bean>
 	
 	<!-- 自定义的filter -->
-	<beans:bean id="xarchSecurityFilter" class="org.springframework.security.web.access.intercept.FilterSecurityInterceptor">
+	<beans:bean id="securityFilterEx" class="org.springframework.security.web.access.intercept.FilterSecurityInterceptor">
 		<!-- 用户拥有的权限 -->
 		<beans:property name="authenticationManager" ref="authenticationManager" />
 		<!-- 用户是否拥有所请求资源的权限-->
-		<beans:property name="accessDecisionManager" ref="XarchAccessDecisionManager" />
+		<beans:property name="accessDecisionManager" ref="AccessDecisionManagerEx" />
 		<!-- 资源与权限对应关系 -->
-		<beans:property name="securityMetadataSource" ref="XarchInvocationSecurityMetadataSource" />
+		<beans:property name="securityMetadataSource" ref="InvocationSecurityMetadataSourceEx" />
 		<beans:property name="observeOncePerRequest" value="false" />
 	</beans:bean>
 	
 	<!-- 认证管理器 -->
 	<authentication-manager alias="authenticationManager" erase-credentials="false">
-		<authentication-provider user-service-ref="XarchUserService">
+		<authentication-provider user-service-ref="UserDetailServiceEx">
 			<!-- 密码加密方式采用MD5，同时使用username（登录名）作为盐 -->
 			<password-encoder hash="md5">  
 				<salt-source user-property="username"/>
