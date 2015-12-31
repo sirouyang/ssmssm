@@ -52,9 +52,27 @@ public class ComConst {
 	
     /** 返回值0：正常 */
 	public static final String RESULT_CODE_SUCCESS = "0";
+	
+    /** 返回值1：一意制约 */
+    public static final String RESULT_CODE_FAILD_1 = "1";
+    
+    /** 返回值2：排他异常 */
+    public static final String RESULT_CODE_FAILD_2 = "2";
     
     /** 返回值0：Exception发生 */
 	public static final String RESULT_CODE_FAILD_9 = "9";
+	
+    /** 操作模式 */
+    public static final String OPERATE_MODE_ID = "operate";
+    
+    /** 操作模式(I:登录) */
+    public static final String OPERATE_MODE_I = "I";
+    
+    /** 操作模式(U:更新) */
+    public static final String OPERATE_MODE_U = "U";
+    
+    /** 操作模式(D:删除) */
+    public static final String OPERATE_MODE_D = "D";
 	
     /** 性别(100001) */
     public static final Integer SEX_ID = 100001;

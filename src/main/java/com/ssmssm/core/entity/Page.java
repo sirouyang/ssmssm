@@ -1,4 +1,4 @@
-package com.ssmssm.entity;
+package com.ssmssm.core.entity;
 
 import java.math.BigDecimal;
 

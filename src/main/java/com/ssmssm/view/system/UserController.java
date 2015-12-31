@@ -1,7 +1,5 @@
 package com.ssmssm.view.system;
 
-import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -12,9 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.ssmssm.core.utils.ComConst;
 import com.ssmssm.core.view.BaseController;
 import com.ssmssm.entity.system.CommonCode;
 import com.ssmssm.entity.system.User;
@@ -52,13 +47,30 @@ public class UserController extends BaseController {
      * 新增用户
      * 
      * @return
-     * @throws IOException
-     * @throws JsonMappingException
-     * @throws JsonParseException
      */
     @RequestMapping(value = "/user/insertUser", method = RequestMethod.POST)
     public @ResponseBody Map<String, String> insertUser(User user){
         return userService.insertUser(user);
+    }
+    
+    /***
+     * 编辑用户
+     * 
+     * @return
+     */
+    @RequestMapping(value = "/user/updateUser", method = RequestMethod.POST)
+    public @ResponseBody Map<String, String> updateUser(User user){
+        return userService.updateUser(user);
+    }
+    
+    /***
+     * 删除用户
+     * 
+     * @return
+     */
+    @RequestMapping(value = "/user/deleteUser", method = RequestMethod.POST)
+    public @ResponseBody Map<String, String> deleteUser(User user){
+        return userService.deleteUser(user);
     }
     
     @RequestMapping(value = "/user/getUserTypeList", method = RequestMethod.GET)

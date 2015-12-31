@@ -27,7 +27,7 @@ public class PostgreSQLPaginationPlugin extends PluginAdapter {
 	/**
 	 * Page类所在的类路径:其中Page类中一定要有begin和end属性(即：开始记录位置和结束记录位置)
 	 */
-	public static final String pageClassPath = "com.ssmssm.entity.Page";
+	public static final String pageClassPath = "com.ssmssm.core.entity.Page";
 
 	@Override
 	public boolean modelExampleClassGenerated(TopLevelClass topLevelClass,

@@ -28,10 +28,10 @@ function initDataTables() {
 			var staticResop = "";
 			staticResop = staticResop
 					+ "<button type=\"button\" class=\"btn btn-primary btn-sm\" onclick=\"funUpd(\'"
-					+ row["id"] + "\')\">修改</button>"
+					+ row["id"] + "\')\">" + OPERATE_MODENAME_U + "</button>"
 			staticResop = staticResop
-					+ "<button type=\"button\" class=\"btn btn-danger btn-sm\" onclick=\"funUpd(\'"
-					+ row["id"] + "\')\">删除</button>"
+					+ "<button type=\"button\" class=\"btn btn-danger btn-sm\" onclick=\"funDel(\'"
+					+ row["id"] + "\')\">" + OPERATE_MODENAME_D + "</button>"
 			return staticResop;
 		},
 		"targets" : 6
@@ -55,8 +55,10 @@ function initDataTables() {
  * 添加按钮
  **/
 function funAdd() {
-	$("#hdnUserId").val("");
-	$("#hdnMode").val("I");
+	$("#id").val("");
+	$("#hdnMode").val(OPERATE_MODE_I);
+	$("#myModalLabel")[0].innerHTML = OPERATE_MODENAME_I;
+	initDisable();
 	$("#myModal").modal("show");
 };
 
@@ -64,8 +66,10 @@ function funAdd() {
  * 编辑按钮
  **/
 function funUpd(id) {
-	$("#hdnUserId").val(id);
-	$("#hdnMode").val("U");
+	$("#id").val(id);
+	$("#hdnMode").val(OPERATE_MODE_U);
+	$("#myModalLabel")[0].innerHTML = OPERATE_MODENAME_U;
+	initDisable();
 	$("#myModal").modal("show");
 };
 
@@ -73,8 +77,10 @@ function funUpd(id) {
  * 删除按钮
  **/
 function funDel(id) {
-	$("#hdnUserId").val(id);
-	$("#hdnMode").val("D");
+	$("#id").val(id);
+	$("#hdnMode").val(OPERATE_MODE_D);
+	$("#myModalLabel")[0].innerHTML = OPERATE_MODENAME_D;
+	initDisable();
 	$("#myModal").modal("show");
 };
 
@@ -82,14 +88,51 @@ function funDel(id) {
  * 保存按钮
  **/
 function funSave() {
-	ajaxPost('/user/insertUser', $("#subform").serialize(), function(data,
+	var url;
+	if (OPERATE_MODE_I == $("#hdnMode").val()) {
+		url = "/user/insertUser";
+	} else if (OPERATE_MODE_U == $("#hdnMode").val()) {
+		url = "/user/updateUser";
+	} else if (OPERATE_MODE_D == $("#hdnMode").val()) {
+		url = "/user/deleteUser";
+	}
+	ajaxPost(url, $("#subform").serialize(), function(data,
 			status) {
 		funCallback(data, status);
 	});
 };
 function funCallback(data, status) {
 	if (data.RESULT_CODE == RESULT_CODE_SUCCESS) {
+		initModel();
 		$("#myModal").modal("hide");
 		$("#mytable").dataTable().fnReloadAjax();
 	}
 };
+
+//删除模式下，控件不可用
+function initDisable() {
+	if (OPERATE_MODE_D == $("#hdnMode").val()) {
+		$("#subform").find(":input").each(function() {
+			if ($(this).attr("type") != "hidden" && $(this).attr("type") != "button") {
+				$(this).attr("disabled", "disabled");
+			}
+		});
+		$("#btnSave").attr("class", "btn btn-danger pull-right");
+	} else {
+		$("#subform").find(":input").each(function() {
+			$(this).removeAttr("disabled");
+		});
+		if (OPERATE_MODE_I == $("#hdnMode").val()) {
+			$("#btnSave").attr("class", "btn btn-success pull-right");
+		} else {
+			$("#btnSave").attr("class", "btn btn-primary pull-right");
+		}
+	}
+	$("#btnSave")[0].innerHTML = $("#myModalLabel")[0].innerHTML;
+}
+// 初始化model
+function initModel() {
+	$("#subform").find("*").each(function() {
+		$(this).val("");
+	});
+}

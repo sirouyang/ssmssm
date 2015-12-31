@@ -171,8 +171,8 @@
 					</div>
 					<!-- /.box-body -->
 					<div class="box-footer">
-						<input type="hidden" id="hdnUserId" /> <input type="hidden"
-							id="hdnMode" value="I" />
+						<input type="hidden" id="id" name="id" /> <input type="hidden"
+							id="hdnMode"  name="hdnMode" value="I" />
 						<button type="button" class="btn btn-info pull-right" id="btnSave">保存</button>
 					</div>
 					<!-- /.box-footer -->

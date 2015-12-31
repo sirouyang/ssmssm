@@ -46,7 +46,7 @@ function datatablesInit() {
         "dom": "<'row'<'col-xs-2'l><'#mytool.col-xs-4'><'col-xs-6'f>r>" + "t" + "<'row'<'col-xs-6'i><'col-xs-6'p>>",
 		initComplete: function () {
 			if (btnAdd) {
-	            $("#mytool").append('<button type="button" class="btn btn-default btn-sm" id="btnAdd">添加</button>');
+	            $("#mytool").append('<button type="button" class="btn btn-success btn-sm" id="btnAdd">' + OPERATE_MODENAME_I + '</button>');
 	            $("#btnAdd").on("click", funAdd);
 			}
             lock = false;

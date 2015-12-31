@@ -1,6 +1,6 @@
 package com.ssmssm.entity.system;
 
-import com.ssmssm.entity.BaseEntity;
+import com.ssmssm.core.entity.BaseEntity;
 
 import java.io.Serializable;
 
