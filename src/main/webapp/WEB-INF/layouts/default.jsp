@@ -27,6 +27,8 @@
 <script>
 	$.widget.bridge('uibutton', $.ui.button);
 	contextPath = '${ctx}';
+	var headers = {};
+    headers['X-CSRF-TOKEN'] = ($("meta[name=_csrf]")).attr("content");
 </script>
 <!-- Bootstrap 3.3.5 -->
 <script src="${ctx}/res/AdminLTE/bootstrap/js/bootstrap.min.js"></script>
@@ -60,8 +62,6 @@
 	src="${ctx}/res/AdminLTE/plugins/datatables/jquery.dataTables.min.js"></script>
 <script
 	src="${ctx}/res/AdminLTE/plugins/datatables/dataTables.bootstrap.min.js"></script>
-<script src="${ctx}/res/js/common/datatablesEx.js"></script>
-<script src="${ctx}/res/js/common/datatablesInit.js"></script>
 <!-- Slimscroll -->
 <script
 	src="${ctx}/res/AdminLTE/plugins/slimScroll/jquery.slimscroll.min.js"></script>
@@ -74,17 +74,20 @@
 <!-- AdminLTE for demo purposes -->
 <script src="${ctx}/res/AdminLTE/dist/js/demo.js"></script>
 <!-- InputMask -->
-<script src="${ctx}/res/AdminLTE/plugins/input-mask/jquery.inputmask.js"></script>
+<!-- <script src="${ctx}/res/AdminLTE/plugins/input-mask/jquery.inputmask.js"></script>
 <script src="${ctx}/res/AdminLTE/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
-<script src="${ctx}/res/AdminLTE/plugins/input-mask/jquery.inputmask.extensions.js"></script>
+<script src="${ctx}/res/AdminLTE/plugins/input-mask/jquery.inputmask.extensions.js"></script> -->
 
+<%-- ajax提交的工具类 --%>
+<script src="${ctx}/res/js/common/ajaxPost.js"></script>
+<%-- 共通定数类 --%>
+<script src="${ctx}/res/js/common/comconst.js"></script>
+<%-- datatables的工具类 --%>
+<script src="${ctx}/res/js/common/datatablesEx.js"></script>
+<script src="${ctx}/res/js/common/datatablesInit.js"></script>
+<script src="${ctx}/res/js/common/fnReloadAjax.js"></script>
 <%-- 打开弹出窗口的工具类 --%>
-<script src="${ctx}/res/js/common/OpenWinUtil.js"></script>
-<%-- jqGrid-4.6.0 核心 JavaScript 文件 --%>
-<!-- <script src="${ctx}/res/js/jqGrid-4.6.0/jquery.jqGrid.min.js"></script>
-<script src="${ctx}/res/js/common/jqGridInit.js"></script>
-<script src="${ctx}/res/js/common/customDropDown.js"></script>
-<script src="${ctx}/res/js/common/ajaxPost.js"></script> -->
+<!-- <script src="${ctx}/res/js/common/OpenWinUtil.js"></script> -->
 <script type="text/javascript">
 	function logout() {
 		if (confirm('确定要退出吗？')) {

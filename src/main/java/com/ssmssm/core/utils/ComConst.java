@@ -47,6 +47,15 @@ public class ComConst {
 	/** 删除区分(R:资源) */
 	public static final String DEL_FLG_R = "R";
 	
+    /** 返回值 */
+    public static final String RESULT_CODE = "RESULT_CODE";
+	
+    /** 返回值0：正常 */
+	public static final String RESULT_CODE_SUCCESS = "0";
+    
+    /** 返回值0：Exception发生 */
+	public static final String RESULT_CODE_FAILD_9 = "9";
+	
     /** 性别(100001) */
     public static final Integer SEX_ID = 100001;
 

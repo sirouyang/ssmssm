@@ -1,4 +1,16 @@
 $(function() {
+	initDataTables();
+	
+	$("#userPsw").strength({language: 'zh-CN'});
+	$("#userPswConfirm").strength({language: 'zh-CN'});
+	
+	// modal事件
+	$("#btnSave").click(function() {
+		funSave();
+	})
+});
+
+function initDataTables() {
 	var userTypeList = $.grep(commonCodeList, function(objdata, i) {
 		return objdata.codeId == 100004;
 	});
@@ -38,42 +50,46 @@ $(function() {
 		"targets" : 3
 	});
 	datatablesInit();
-//	// 前台添加序号
-//	t.on('order.dt search.dt', function() {
-//		t.column(0, {
-//			"search" : 'applied',
-//			"order" : 'applied'
-//		}).nodes().each(function(cell, i) {
-//			cell.innerHTML = i + 1;
-//		});
-//	}).draw();
-	
-	$("[data-mask]").inputmask();
-	$("#txtUserPsw").strength({language: 'zh-CN'});
-	$("#txtUserPswConfirm").strength({language: 'zh-CN'});
-});
-
+}
 /**
- *添加按钮
+ * 添加按钮
  **/
 function funAdd() {
+	$("#hdnUserId").val("");
+	$("#hdnMode").val("I");
 	$("#myModal").modal("show");
-}
+};
 
 /**
- *编辑按钮
+ * 编辑按钮
  **/
 function funUpd(id) {
-	$("#userId").val(id);
-	$("#mode").val("U");
+	$("#hdnUserId").val(id);
+	$("#hdnMode").val("U");
 	$("#myModal").modal("show");
-}
+};
+
 /**
- *删除按钮
+ * 删除按钮
  **/
 function funDel(id) {
-	$("#userId").val(id);
-	$("#mode").val("D");
+	$("#hdnUserId").val(id);
+	$("#hdnMode").val("D");
 	$("#myModal").modal("show");
-}
+};
 
+/**
+ * 保存按钮
+ **/
+function funSave() {
+	ajaxPost('/user/insertUser', $("#subform").serialize(), function(data,
+			status) {
+		funCallback(data, status);
+	});
+};
+function funCallback(data, status) {
+	if (data.RESULT_CODE == RESULT_CODE_SUCCESS) {
+		$("#myModal").modal("hide");
+		$("#mytable").dataTable().fnReloadAjax();
+	}
+};

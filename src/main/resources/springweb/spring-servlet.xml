@@ -67,6 +67,29 @@
 	</mvc:interceptors>
 	
 	<mvc:resources mapping="/res/**" location="/WEB-INF/res/"/>      
-	<mvc:default-servlet-handler />    
+	<mvc:default-servlet-handler />
+	
+	<!-- 全局异常配置 start -->
+	<beans:bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<beans:property name="exceptionMappings">
+			<beans:props>
+				<beans:prop key="java.lang.Exception">errors/error</beans:prop>
+				<beans:prop key="java.lang.Throwable">errors/err</beans:prop>
+			</beans:props>
+		</beans:property>
+		<beans:property name="statusCodes">
+			<beans:props>
+				<beans:prop key="errors/error">500</beans:prop>
+				<beans:prop key="errors/404">404</beans:prop>
+			</beans:props>
+		</beans:property>
+		<!-- 设置日志输出级别，不定义则默认不输出警告等错误日志信息 -->
+		<beans:property name="warnLogCategory" value="WARN"></beans:property>
+		<!-- 默认错误页面，当找不到上面mappings中指定的异常对应视图时，使用本默认配置 -->
+		<beans:property name="defaultErrorView" value="errors/error"></beans:property>
+		<!-- 默认HTTP状态码 -->
+		<beans:property name="defaultStatusCode" value="500"></beans:property>
+	</beans:bean>
+	<!-- 全局异常配置 end -->
 
 </beans:beans>

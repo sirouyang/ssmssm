@@ -18,11 +18,9 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.opensymphony.xwork2.ActionSupport;
-import com.ssmssm.core.utils.BeanUtils;
 import com.ssmssm.core.utils.ComConst;
 import com.ssmssm.core.utils.WebUtilsEx;
 import com.ssmssm.core.view.BaseController;
-import com.ssmssm.core.view.listener.StartupListener;
 import com.ssmssm.entity.system.BusinessLogs;
 import com.ssmssm.entity.system.User;
 
@@ -182,10 +180,6 @@ public class LoggerInterceptor extends HandlerInterceptorAdapter {
     
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView mav)
         throws Exception {
-        if (mav == null) {
-            mav = new ModelAndView();
-        }
-        mav.addObject("commonCodeList", BeanUtils.toJson(StartupListener.commonCodeList));
         if (isLogger) {
             // System.out.println("This is postHandle!");
         }

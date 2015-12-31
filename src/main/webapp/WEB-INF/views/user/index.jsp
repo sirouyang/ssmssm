@@ -81,76 +81,99 @@
 					<h4 class="modal-title" id="myModalLabel">新增</h4>
 				</div>
 				<!-- form start -->
-				<form class="form-horizontal">
+				<form class="form-horizontal" id="subform">
 					<div class="box-body">
 						<div class="form-group">
 							<label for="lblUserName" class="col-sm-2 control-label">用户名</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" id="txtUserName"
-									placeholder="用户名" maxlength="10" />
+								<input type="text" class="form-control" id="userName"
+									name="userName" placeholder="用户名" maxlength="10" />
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="lblUserPsw" class="col-sm-2 control-label">密码</label>
 							<div class="col-sm-10">
-								<input type="password" class="form-control strength" id="txtUserPsw"
-									placeholder="密码" maxlength="20" />
+								<input type="password" class="form-control strength"
+									id="userPsw" name="userPsw" placeholder="密码" maxlength="20" />
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="lblUserPswConfirm" class="col-sm-2 control-label">确认密码</label>
 							<div class="col-sm-10">
 								<input type="password" class="form-control strength"
-									id="txtUserPswConfirm" placeholder="确认密码" maxlength="20" />
+									id="userPswConfirm" name="userPswConfirm" placeholder="确认密码"
+									maxlength="20" />
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="lblFullName" class="col-sm-2 control-label">姓名</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" id="txtFullName"
-									placeholder="姓名" maxlength="20" />
+								<input type="text" class="form-control" id="fullName"
+									name="fullName" placeholder="姓名" maxlength="20" />
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="lblSex" class="col-sm-2 control-label">性别</label>
 							<div class="col-sm-5 radio">
-								<label> <input type="radio" name="radSex"
-									id="radSex1" value="<%=ComConst.SEX_1001%>" checked />男
+								<label> <input type="radio" name="sex" id="radSex1"
+									value="<%=ComConst.SEX_1001%>" checked />男
 								</label>
 							</div>
 							<div class="col-sm-5 radio">
-								<label> <input type="radio" name="radSex"
-									id="radSex2" value="<%=ComConst.SEX_1002%>" />女
+								<label> <input type="radio" name="sex" id="radSex2"
+									value="<%=ComConst.SEX_1002%>" />女
+								</label>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="lblUserType" class="col-sm-2 control-label">类型</label>
+							<div class="col-sm-10">
+								<select class="form-control select2" style="width: 100%;" id="userType" name="userType">
+				                  <option selected="selected" value="1000">管理员</option>
+				                  <option value="1001">用户</option>
+				                </select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="lblUserEnabled" class="col-sm-2 control-label">性别</label>
+							<div class="col-sm-5 radio">
+								<label> <input type="radio" name="userEnabled" id="radUserEnabled1"
+									value="<%=ComConst.ENABLED_1001%>" checked />有效
+								</label>
+							</div>
+							<div class="col-sm-5 radio">
+								<label> <input type="radio" name="sex" id="radUserEnabled2"
+									value="<%=ComConst.ENABLED_1002%>" />无效
 								</label>
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="lblEmail" class="col-sm-2 control-label">邮箱</label>
 							<div class="col-sm-10">
-								<input type="email" class="form-control" id="txtEmail"
+								<input type="email" class="form-control" id="email" name="email"
 									placeholder="邮箱" maxlength="50" />
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="lblMobilePhone" class="col-sm-2 control-label">手机</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" id="txtMobilePhone"
-									placeholder="手机" data-inputmask='"mask": "999 9999 9999"' data-mask />
+								<input type="text" class="form-control" id="mobilePhone"
+									name="mobilePhone" placeholder="手机" />
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="lblComments" class="col-sm-2 control-label">备注</label>
 							<div class="col-sm-10">
 								<textarea class="form-control" rows="3" placeholder="备注"
-									id="txtComments" maxlength="100" ></textarea>
+									id="comments" name="comments" maxlength="100"></textarea>
 							</div>
 						</div>
 					</div>
 					<!-- /.box-body -->
 					<div class="box-footer">
-						<input type="hidden" id="userId" /> <input type="hidden"
-							id="mode" value="I" />
-						<button type="submit" class="btn btn-info pull-right" id="save">保存</button>
+						<input type="hidden" id="hdnUserId" /> <input type="hidden"
+							id="hdnMode" value="I" />
+						<button type="button" class="btn btn-info pull-right" id="btnSave">保存</button>
 					</div>
 					<!-- /.box-footer -->
 				</form>

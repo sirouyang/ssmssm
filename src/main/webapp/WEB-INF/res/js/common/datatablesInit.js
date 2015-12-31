@@ -12,9 +12,7 @@ function datatablesInit() {
 		return;
 	}
 	lock = true;
-	var headers = {};
-	headers['X-CSRF-TOKEN'] = ($("meta[name=_csrf]")).attr("content");
-	var t = $('#' + tableId).DataTable({
+	var mytable = $('#' + tableId).DataTable({
 		"ajax" : $.fn.dataTable.pipeline({
 			"url" : contextPath + paramUrl,
 			"type" : "POST",
@@ -55,7 +53,7 @@ function datatablesInit() {
         }
 	});
 //	// 前台添加序号
-//	t.on('order.dt search.dt', function() {
+//	mytable.on('order.dt search.dt', function() {
 //		t.column(0, {
 //			"search" : 'applied',
 //			"order" : 'applied'
