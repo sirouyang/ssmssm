@@ -31,7 +31,7 @@ import com.ssmssm.entity.system.User;
  * </p>
  */
 public class LoggerInterceptor extends HandlerInterceptorAdapter {
-    private org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(this.getClass().getName());
+    private org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(this.getClass());
     
     private Boolean isLogger; // 是否写Logger
     

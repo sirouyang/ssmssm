@@ -21,7 +21,7 @@ import com.ssmssm.entity.system.User;
 public class SsoController {
     
     @Autowired
-    @Qualifier("UserDetailServiceEx")
+    @Qualifier("userDetailServiceEx")
     private UserDetailsService userDetailsService;
     
     private HttpServletRequest request;

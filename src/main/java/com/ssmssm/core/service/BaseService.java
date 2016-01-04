@@ -3,7 +3,8 @@ package com.ssmssm.core.service;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ssmssm.core.dao.BaseDao;
@@ -16,7 +17,7 @@ import com.ssmssm.core.utils.ComConst;
 public abstract class BaseService {
     
     /** 日志记录对象. */
-    private Logger logger = Logger.getLogger(getClass());
+    private Logger logger = LoggerFactory.getLogger(getClass());
     
     /** mapper(BaseDao):dao实例. */
     private BaseDao mapper;

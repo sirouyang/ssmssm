@@ -43,7 +43,7 @@
 		<property name="dataSource" ref="dataSource"></property>
 		<property name="configLocation" value="classpath:mybatis/mybatis-config.xml"></property>
 		<!-- mybatis配置文件自动扫描路径  -->
-		<property name="mapperLocations" value="classpath:com/ssmssm/dao/*/*Mapper.xml"></property>
+		<property name="mapperLocations" value="classpath:mybatis/dao*/*/*Mapper.xml"></property>
 	</bean>
 	
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">

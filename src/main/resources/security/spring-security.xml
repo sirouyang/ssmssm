@@ -17,7 +17,7 @@
 		<anonymous enabled="false"/>
 		<form-login password-parameter="password" username-parameter="username" login-page="/login" authentication-success-handler-ref="authenticationSuccessHandler" authentication-failure-handler-ref="authenticationFailureHandler" />
 		<logout success-handler-ref="logoutSuccessHandler" logout-url="/logout" delete-cookies="JSESSIONID"/>
-		<remember-me key="ssoKey" user-service-ref="UserDetailServiceEx"/>
+		<remember-me key="ssoKey" user-service-ref="userDetailServiceEx"/>
 		<session-management session-fixation-protection="migrateSession"  invalid-session-url="/login?login_error=2">
 			<concurrency-control expired-url="/login?login_error=3" error-if-maximum-exceeded="false" />
 		</session-management>
@@ -46,15 +46,15 @@
 		<!-- 用户拥有的权限 -->
 		<beans:property name="authenticationManager" ref="authenticationManager" />
 		<!-- 用户是否拥有所请求资源的权限-->
-		<beans:property name="accessDecisionManager" ref="AccessDecisionManagerEx" />
+		<beans:property name="accessDecisionManager" ref="accessDecisionManagerEx" />
 		<!-- 资源与权限对应关系 -->
-		<beans:property name="securityMetadataSource" ref="InvocationSecurityMetadataSourceEx" />
+		<beans:property name="securityMetadataSource" ref="invocationSecurityMetadataSourceEx" />
 		<beans:property name="observeOncePerRequest" value="false" />
 	</beans:bean>
 	
 	<!-- 认证管理器 -->
 	<authentication-manager alias="authenticationManager" erase-credentials="false">
-		<authentication-provider user-service-ref="UserDetailServiceEx">
+		<authentication-provider user-service-ref="userDetailServiceEx">
 			<!-- 密码加密方式采用MD5，同时使用username（登录名）作为盐 -->
 			<password-encoder hash="md5">  
 				<salt-source user-property="username"/>

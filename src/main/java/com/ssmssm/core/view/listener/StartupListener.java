@@ -3,8 +3,8 @@ package com.ssmssm.core.view.listener;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -18,7 +18,7 @@ import com.ssmssm.entity.system.CommonCodeCriteria;
 @Service
 public class StartupListener implements ApplicationContextAware {
     
-    protected Logger logger = LogManager.getLogger(StartupListener.class);
+    protected Logger logger = LoggerFactory.getLogger(StartupListener.class);
     
     public static List<CommonCode> commonCodeList = new ArrayList<CommonCode>();
     
@@ -30,7 +30,7 @@ public class StartupListener implements ApplicationContextAware {
         throws BeansException {
         
         commonCodeList = commonCodeMapper.selectByExample(new CommonCodeCriteria());
-        logger.equals(commonCodeList);
+        logger.debug(commonCodeList.toString());
         
     }
 }

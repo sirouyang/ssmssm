@@ -20,7 +20,7 @@ import com.ssmssm.daoEx.system.UserRoleResExMapper;
 import com.ssmssm.entityEx.system.RoleResConditionEntity;
 import com.ssmssm.entityEx.system.RoleResResultEntity;
 
-@Service("InvocationSecurityMetadataSourceEx")
+@Service("invocationSecurityMetadataSourceEx")
 public class InvocationSecurityMetadataSourceEx implements
 		FilterInvocationSecurityMetadataSource {
 	/** SAME_LEVEL_TYPE(String): 忽略参数. */
@@ -48,7 +48,7 @@ public class InvocationSecurityMetadataSourceEx implements
 	private static Collection<ConfigAttribute> denyAttr = null;
 
 	@Autowired
-	private UserRoleResExMapper tAiotUserRoleResExMapper;
+	private UserRoleResExMapper userRoleResExMapper;
 
 	/**
 	 * <p>
@@ -195,7 +195,7 @@ public class InvocationSecurityMetadataSourceEx implements
 		condition.setDelFlg0(ComConst.DEL_FLG_0);
 		condition.setDelFlgR(ComConst.DEL_FLG_R);
 		condition.setRoleEnabled(ComConst.ENABLED_1001);
-		List<RoleResResultEntity> resList = tAiotUserRoleResExMapper
+		List<RoleResResultEntity> resList = userRoleResExMapper
 				.selectRoleRes(condition);
 		if (resList != null && !resList.isEmpty()) {
 			resourceMap = new HashMap<String, Collection<ConfigAttribute>>();

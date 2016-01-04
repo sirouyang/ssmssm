@@ -25,7 +25,7 @@ import com.ssmssm.entity.system.User;
 import com.ssmssm.entity.system.UserCriteria;
 import com.ssmssm.entityEx.system.RoleResConditionEntity;
 
-@Service("UserDetailServiceEx")
+@Service("userDetailServiceEx")
 public class UserDetailServiceEx implements UserDetailsService {
 	/** USER_ROLE(String):登录后用户具有的默认权限. */
 	public static final String USER_ROLE = "USER_ROLE";

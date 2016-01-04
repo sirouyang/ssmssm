@@ -1,6 +1,7 @@
 package com.ssmssm.core.utils;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.web.FilterInvocation;
 import org.springframework.util.AntPathMatcher;
 
@@ -12,7 +13,7 @@ import org.springframework.util.AntPathMatcher;
  */
 public class AntPathRequestMatcher {
 	/** 日志记录对象. */
-	private Logger logger = Logger.getLogger(getClass());
+	private Logger logger = LoggerFactory.getLogger(getClass());
 	@SuppressWarnings("deprecation")
     private final org.springframework.security.web.util.AntPathRequestMatcher springMatcher;
 	private final String pattern;

@@ -24,6 +24,6 @@
 	<import resource="classpath:simplesm-context.xml" />
 	<context:annotation-config />
 	
-	<import resource="xmemcached.xml"/>
+	<!-- <import resource="xmemcached.xml"/> -->
 	
 </beans>

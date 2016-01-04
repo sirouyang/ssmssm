@@ -16,8 +16,8 @@ import javax.crypto.spec.SecretKeySpec;
 import javax.servlet.ServletContext;
 
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.io.SAXReader;
@@ -31,7 +31,7 @@ import org.springframework.web.context.WebApplicationContext;
  * <p>Company:上海中信信息发展股份有限公司</p>
  */
 public class FileUtilEx {
-	protected static Log log = LogFactory.getLog(new FileUtilEx().getClass());
+	protected static Logger logger = LoggerFactory.getLogger(new FileUtilEx().getClass());
 	
 	public static Document getXmlDocumentByXmlPath(String xmlPath){
 		InputStream is = FileUtilEx.getInputStreamByRelativePath(xmlPath);
@@ -40,7 +40,7 @@ public class FileUtilEx {
 		try {
 			document = reader.read(is);
 		} catch (DocumentException e) {
-			log.error(e.getMessage());
+			logger.error(e.getMessage());
 			e.printStackTrace();
 		} finally{
 			FileUtilEx.closeInputStream(is);
@@ -62,7 +62,7 @@ public class FileUtilEx {
 		try {
 			fis = new FileInputStream(file);
 		} catch (FileNotFoundException e) {
-			log.error(e.getMessage());
+			logger.error(e.getMessage());
 			e.printStackTrace();
 		}
 		return fis;
